@@ -18,6 +18,21 @@ Push the code to the AWS ECR:
 All of these mentioned codes can be found on the ECR service within the images repository through the `View push commands` button.
 It's important to have the ECR created before trying to push anything to the Amazon Web Services.
 
+### AWS Lambda Runtime Interface Emulator (RIE)
+
+To test the container locally, it is possible to take advantage of the RIE. The AWS base images for Lambda include the runtime interface emulator.
+If needed, alternative base images can be used. More work will be necessary to build the RIE on those images in order to test the application locally, though. 
+
+More information can be found on the optional references at the end of this document.
+
+For tests, you can run the container with the following command:
+>docker run -p 9000:8080 `python-lambda`:latest
+
+This command runs the image as a container and starts up an endpoint locally at `localhost:9000/2015-03-31/functions/function/invocations`.
+
+Now you can post an event to the following endpoint using a `curl` command:
+> curl -XPOST "http://localhost:9000/2015-03-31/functions/function/invocations" -d '{}'
+
 ## References
 The links bellow describes the procedures followed to deploy the Docker image on ECR and use it for the creation of the lambda function.
 
