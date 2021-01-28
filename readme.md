@@ -18,6 +18,16 @@ Push the code to the AWS ECR:
 All of these mentioned codes can be found on the ECR service within the images repository through the `View push commands` button.
 It's important to have the ECR created before trying to push anything to the Amazon Web Services.
 
+If the pushing command display any errors, you can login and link back your AWS/Docker account through the following command:
+
+  ```
+aws ecr get-login-password \
+    --region <region> \
+| docker login \
+    --username AWS \
+    --password-stdin <aws_account_id>.dkr.ecr.<region>.amazonaws.com
+```
+
 ### AWS Lambda Runtime Interface Emulator (RIE)
 
 To test the container locally, it is possible to take advantage of the RIE. The AWS base images for Lambda include the runtime interface emulator.
